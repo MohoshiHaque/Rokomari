@@ -18,10 +18,16 @@ public class Login {
         WebDriver driver = new ChromeDriver();
         String url = "https://www.daraz.com.bd/";
         driver.get(url);
-        WebElement e1 = driver.findElement(xpath("//*[@id=\"anonLogin\"]/a"));
-        e1.click();
+
+        //TC-01
+        String expectTitle = "Online Shopping in Bangladesh: Order Now from Daraz.com.bd";
+        String actualTitle = driver.getTitle();
+        Assert.assertEquals(actualTitle, expectTitle);
+        Thread.sleep(3000);
 
         //TC-02
+        WebElement e1 = driver.findElement(xpath("//*[@id=\"anonLogin\"]/a"));
+        e1.click();
         WebElement e2 = driver.findElement(xpath("//*[@id=\"container\"]/div/div[2]/form/div/div[2]/div[1]/button"));
         e2.click();
         String Expectresultemail = "You can't leave this empty.";
@@ -30,13 +36,12 @@ public class Login {
         Thread.sleep(3000);
 
         //TC-03
-        WebElement e3 =driver.findElement(By.xpath("//*[@id=\"container\"]/div/div[2]/form/div/div[1]/div[1]/input"));
+        WebElement e3 = driver.findElement(By.xpath("//*[@id=\"container\"]/div/div[2]/form/div/div[1]/div[1]/input"));
         e3.sendKeys("bugresistance@gmail.com");
-        WebElement e4=driver.findElement(By.xpath("//*[@id=\"container\"]/div/div[2]/form/div/div[1]/div[2]/input"));
+        WebElement e4 = driver.findElement(By.xpath("//*[@id=\"container\"]/div/div[2]/form/div/div[1]/div[2]/input"));
         e4.sendKeys("123456abc");
         e2.click();
         Thread.sleep(3000);
-
 
 
     }
