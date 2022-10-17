@@ -11,11 +11,16 @@ import static org.openqa.selenium.By.xpath;
 
 public class Login {
 
-    @Test
-    public void login() throws InterruptedException {
+    WebDriver driver;
 
-        System.setProperty("webdriver.chrome.driver", "F:\\Automation\\ChromeDriver\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+    public void initiate()  {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\mohoshi.haque\\Downloads\\Chrome Driver\\chromedriver.exe");
+        driver = new ChromeDriver();
+    }
+
+    @Test(priority = 1)
+    public void test1() throws InterruptedException {
+        initiate();
         String url = "https://www.daraz.com.bd/";
         driver.get(url);
 
@@ -24,7 +29,11 @@ public class Login {
         String actualTitle = driver.getTitle();
         Assert.assertEquals(actualTitle, expectTitle);
         Thread.sleep(3000);
+    }
 
+    @Test(priority = 2)
+    public void test2() throws InterruptedException {
+        //test1();
         //TC-02
         WebElement e1 = driver.findElement(xpath("//*[@id=\"anonLogin\"]/a"));
         e1.click();
@@ -42,8 +51,6 @@ public class Login {
         e4.sendKeys("123456abc");
         e2.click();
         Thread.sleep(3000);
-
-
     }
 
 }
